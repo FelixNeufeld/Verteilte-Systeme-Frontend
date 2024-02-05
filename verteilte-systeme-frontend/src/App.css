@@ -1,38 +1,99 @@
-.App {
-  text-align: center;
+.Background{
+  background-color: #313644;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.LoginBackground{
+  background-color: #7683D7;
+  height: 50vh;
+  width: 35vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.text-input-container{
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+}
+
+.UserNameInput{
+  width: 28vh;
+  height: 5vh;
+  text-align-last: left;
+  border-radius: 8px;
+  box-shadow: none;
+  border-color: #313644;
+}
+
+.language-picker{
+  margin-top: 1vh;
+  margin-bottom: 10vh;
+  width: 28vh;
+  height:5vh;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.languageLabel{
+  background-color: white;
+  width: 23vh;
+  height: 5vh;
+  border-radius: 8px 0px 0px 8px;
+  border: solid;
+  border-color: #313644;
+  border-right: none;
+  border-width: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.LanguageSelectButton {
+  width: 6vh;
+  height: 6vh;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  border: solid;
+  border-width: 2px;
+  border-color: #313644;
+  border-radius: 0px 8px 8px 0px;
+}
+
+.EnterChatButton{
+  background-color: white;
+  width: 15vh;
+  height: 5vh;
+  border-radius: 12px;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+  box-shadow: none;
+  border-color: #313644;
+}
+
+
+
+.EnterChatButton:hover,
+.UserNameInput:hover,
+.languageLabel:hover,
+.LanguageSelectButton:hover{
+  border-color: orange;
+  border-style: solid;
+}
+
+.EnterChatButton:focus,
+.UserNameInput:focus,
+.languageLabel:focus{
+  outline: none;
+  border-color: orange;
+  border-style: solid;
 }
