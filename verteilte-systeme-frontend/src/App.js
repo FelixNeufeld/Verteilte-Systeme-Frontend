@@ -14,11 +14,8 @@ const LanguagePicker = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('EN');
 
+  //TODO: Change filler languages to actual languages
   const supportedLanguages = ['EN', 'DE', 'FR', 'ES', 'RU'];
-
-  const toggleLanguageList = () => {
-    setIsOpen(!isOpen);
-  }
 
   const selectLanguage = (language) => {
     setSelectedLanguage(language);
@@ -26,27 +23,27 @@ const LanguagePicker = () => {
     //TODO: Sprache umstellen in der UI
   }
 
-  return(
+  return (
     <div className='language-picker'>
       <label className="languageLabel">Language:</label>
-      <button className='LanguageSelectButton' onClick={toggleLanguageList}>
-        <span>{selectLanguage}</span>
-      </button>
-      {isOpen && (
-        <ul className="language-list">
-          {supportedLanguages.map((language) => {
-            <li key={language} onClick={() => selectLanguage(language)}>
-              {language}
-            </li>
-          })}
-        </ul>
-      )}
+      <select
+        className='LanguageSelectButton'
+        value={selectedLanguage}
+        onChange={(e) => selectLanguage(e.target.value)}
+      >
+        {supportedLanguages.map((language) => (
+          <option key={language} value={language}>
+            {language}
+          </option>
+        ))}
+      </select>
     </div>
-  )
-}
+  );
+};
 
 const EnterChatButton = () => {
   //TODO: functionality
+
   return(
   <div className='buttonContainer'>
     <button className="EnterChatButton">Enter chat</button>
@@ -68,7 +65,7 @@ const LoginSite = () => {
 
 function App() {
   return (
-    <LoginSite></LoginSite>
+    <LoginSite />
   );
 }
 

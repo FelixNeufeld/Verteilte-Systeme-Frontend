@@ -81,10 +81,8 @@
 }
 
 
-
 .EnterChatButton:hover,
 .UserNameInput:hover,
-.languageLabel:hover,
 .LanguageSelectButton:hover{
   border-color: orange;
   border-style: solid;
@@ -92,7 +90,7 @@
 
 .EnterChatButton:focus,
 .UserNameInput:focus,
-.languageLabel:focus{
+.LanguageSelectButton:focus{
   outline: none;
   border-color: orange;
   border-style: solid;

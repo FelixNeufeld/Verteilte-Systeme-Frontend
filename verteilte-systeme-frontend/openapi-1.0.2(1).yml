@@ -1,0 +1,166 @@
+openapi: 3.0.3
+info:
+  title: ChatAPI - CAPI
+  version: 1.0.2
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: user
+  - name: chat
+
+paths:
+  /user:
+    post:
+      tags:
+        - user
+      summary: Update or create an user
+      description: Update or create an user by username
+      operationId: updateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Server error
+    delete:
+      tags:
+        - user
+      summary: Removes an user
+      description: Remove an user by username
+      operationId: removeUser
+      parameters:
+        - in: query
+          name: name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Server error
+  /users:
+    get:
+      tags:
+        - user
+      summary: Get list of all users
+      description: Update or create an user by username
+      operationId: getUsers
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserArray'
+        '500':
+          description: Server error
+          
+  /message:
+    post:
+      tags:
+        - chat
+      summary: Create a new chat message
+      description: Use @bot within the message to get a response from a Chatbot. 
+      operationId: createMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMessage'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Server error
+  /messages:
+    get:
+      tags:
+        - chat
+      summary: Get list of all messages
+      description: Get list of all messages. Use this endpoint for polling messages.
+      operationId: getMessages
+      parameters:
+        - in: query
+          name: lang
+          required: true
+          schema:
+            type: string
+            enum:
+              - de
+              - en
+              - es
+              - fr
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageArray'
+        '500':
+          description: Server error
+          
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: MyCoolName
+    UserArray:
+      type: object
+      properties:
+        users:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+    NewMessage:
+      required:
+        - name
+        - message
+      type: object
+      properties:
+        name:
+          type: string
+          example: MyCoolName
+        message:
+          type: string
+          example: Hi, whats up?
+    Message:
+      type: object
+      properties:
+        name:
+          type: string
+          example: MyCoolName
+        message:
+          type: string
+          example: Hi, whats up?
+        sentiment:
+          type: string
+          example: neutral
+          enum:
+            - positive
+            - neutral
+            - negative
+    MessageArray:
+      type: object
+      properties:
+        sentiment:
+          type: string
+          example: neutral
+          enum:
+            - positive
+            - neutral
+            - negative
+        messages:
+            type: array
+            items:
+              $ref: '#/components/schemas/Message'
