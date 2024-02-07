@@ -2,21 +2,38 @@ import './ChatScreen.css';
 import React, { useEffect } from 'react';
 import { LanguagePicker } from './App';
 import { useTranslation } from 'react-i18next';
+import i18n from './i18n';
 
+const members = [
+  { id: 1, username: 'User1', language: 'GER' },
+  { id: 2, username: 'User2', language: 'EN' },
+  { id: 3, username: 'User3', language: 'FR' },
+];
+
+const messages = [
+  { id: 1, sender: 'User1', content: 'Hallo!' },
+  { id: 2, sender: 'Bot', content: 'Hallo! Wie kann ich Ihnen helfen?' },
+  { id: 3, sender: 'User2', content: 'Ich habe eine Frage zu Ihrem Produkt.' },
+];
+
+const addMemberToList = (member) => {
+  members.push(member);
+}
+
+const addMessage = (message) => {
+  messages.push(message);
+}
+
+const receiveMessageFromServer = () => {
+  //TODO: Implement
+}
 
 const sendMessageToServer = () => {
   //TODO: Implement
-  alert("TODO: Sending messages to the Server is not implemented yet!");
+  alert("TODO: Sending messages to the Server is not implemented yet! Current Language: " + i18n.language);
 }
 
 const ChatWindow = () => {
-    // Sample messages, TODO: Make dynamic
-    const messages = [
-      { id: 1, sender: 'User1', content: 'Hallo!' },
-      { id: 2, sender: 'Bot', content: 'Hallo! Wie kann ich Ihnen helfen?' },
-      { id: 3, sender: 'User2', content: 'Ich habe eine Frage zu Ihrem Produkt.' },
-    ];
-  
     return (
       <div className="chatWindowContainer">
         <div className="chatMessages">
@@ -47,13 +64,6 @@ const MessageInput = () => {
       }
 
 const ChatMemberList = () => {
-    //Demodata TODO: make dynamic
-    const members = [
-        { id: 1, username: 'User1', language: 'GER' },
-        { id: 2, username: 'User2', language: 'EN' },
-        { id: 3, username: 'User3', language: 'FR' },
-      ];
-
       return (
         <div className="chatMembersListContainer">
           <div className="membersList">
