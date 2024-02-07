@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ChatScreen from './ChatScreen';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routing from './Routing';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ChatScreen />
+    <Router>
+      <Routing />
+    </Router>
   </React.StrictMode>
 );
 

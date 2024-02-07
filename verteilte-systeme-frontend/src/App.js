@@ -1,31 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import i18n from './i18n';
+
 
 const UserNameInput = () => {
+  const { t } = useTranslation();
+
   return(
     <div className="text-input-container">
-            <input type="text" placeholder="Username" className='UserNameInput'></input>
+            <input type="text" placeholder={t('username')} className='UserNameInput'></input>
     </div>
   )
 }
 
-const LanguagePicker = () => {
+export const LanguagePicker = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('EN');
 
+  const { t } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  }
+
   //TODO: Change filler languages to actual languages
-  const supportedLanguages = ['EN', 'DE', 'FR', 'ES', 'RU'];
+  const supportedLanguages = ['en', 'de', 'fr', 'es', 'ru'];
 
   const selectLanguage = (language) => {
     setSelectedLanguage(language);
     setIsOpen(false);
-    //TODO: Sprache umstellen in der UI
-  }
+    changeLanguage(language);
+  };
 
   return (
     <div className='language-picker'>
-      <label className="languageLabel">Language:</label>
+      <label className="languageLabel">{t('language')}</label>
       <select
         className='LanguageSelectButton'
         value={selectedLanguage}
@@ -33,7 +43,7 @@ const LanguagePicker = () => {
       >
         {supportedLanguages.map((language) => (
           <option key={language} value={language}>
-            {language}
+            {language.toUpperCase()}
           </option>
         ))}
       </select>
@@ -42,11 +52,14 @@ const LanguagePicker = () => {
 };
 
 const EnterChatButton = () => {
-  //TODO: functionality
+  const { t } = useTranslation();
 
+  const handleRouting = () => {
+    window.location.href = '/chat';
+  }
   return(
   <div className='buttonContainer'>
-    <button className="EnterChatButton">Enter chat</button>
+    <button className="EnterChatButton" onClick={handleRouting}>{t('enter')}</button>
   </div>
   )
 }
@@ -64,6 +77,11 @@ const LoginSite = () => {
 }
 
 function App() {
+
+  useEffect(() => {
+    document.title = "Chat login";
+  }, []);
+
   return (
     <LoginSite />
   );

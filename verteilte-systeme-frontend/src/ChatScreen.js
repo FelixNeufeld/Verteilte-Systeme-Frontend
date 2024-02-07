@@ -1,4 +1,13 @@
 import './ChatScreen.css';
+import React, { useEffect } from 'react';
+import { LanguagePicker } from './App';
+import { useTranslation } from 'react-i18next';
+
+
+const sendMessageToServer = () => {
+  //TODO: Implement
+  alert("TODO: Sending messages to the Server is not implemented yet!");
+}
 
 const ChatWindow = () => {
     // Sample messages, TODO: Make dynamic
@@ -22,14 +31,16 @@ const ChatWindow = () => {
     );
   };
 
-    const MessageInput = () => {
-        return (
-          <div className='messageInputContainer'>
+const MessageInput = () => {
+  const { t } = useTranslation();
+
+    return (
+      <div className='messageInputContainer'>
             <div className="inputContainer">
-              <input type="text" placeholder='type something...' className="messageInput"></input>
+              <input type="text" placeholder={t('type')} className="messageInput"></input>
             </div>
             <div className="SendButtonContainer">
-              <button className='sendButton'>Send</button>
+              <button className='sendButton'onClick={sendMessageToServer}>{t('send')}</button>
             </div>
           </div>
         )
@@ -58,10 +69,17 @@ const ChatMemberList = () => {
 
 
     function ChatScreen() {
+      useEffect(() => {
+        document.title = "Chat";
+      }, []);
+
         return (
           <div className='Background'>
             <div className="flexContainer">
-              <ChatMemberList />
+              <div className='LanguageAndMemberContainer'>
+                <LanguagePicker />
+                <ChatMemberList />
+              </div>
               <div className="chatWindowAndInputContainer">
                 <ChatWindow />
                 <MessageInput />
