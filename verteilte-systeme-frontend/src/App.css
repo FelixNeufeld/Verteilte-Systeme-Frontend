@@ -95,3 +95,7 @@
   border-color: orange;
   border-style: solid;
 }
+
+.EnterChatButton:disabled{
+  border: none;
+}

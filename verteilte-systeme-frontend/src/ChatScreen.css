@@ -19,10 +19,53 @@
     margin-right: 15px;
   }
   
-  .language-picker{
+  .trafficLightContainer{
     width: 100%;
     height: 10%;
     margin-bottom: 10px;
+    background-color: grey;
+    border: solid 2px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+  }
+
+  .redLight,
+  .yellowLight,
+  .greenLight,
+  .redActive,
+  .yellowActive,
+  .greenActive {
+    border: solid 2px;
+    border-radius: 50%;
+    width: 20%;
+    height: 70%;
+    margin-right: 10%;
+  }
+
+  .redLight{
+    background-color: #3d0d0d;
+    margin-left: 10%;
+  }
+
+  .yellowLight{
+    background-color: #3d390d;
+  }
+
+  .greenLight{
+    background-color: #0e3d0d;
+  }
+
+  .redActive{
+    background-color: #ff6347;
+  }
+
+  .yellowActive{
+    background-color: #ffd700;
+  }
+
+  .greenActive{
+    background-color: #00ff7f;
   }
 
   .chatMembersListContainer {

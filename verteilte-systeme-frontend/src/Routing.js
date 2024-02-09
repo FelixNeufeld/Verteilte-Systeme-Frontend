@@ -8,7 +8,7 @@ const Routing = () => {
         <div>
             <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/chat" element={<ChatScreen />} />
+                <Route path="/chat/:language" element={<ChatScreen />} />
             </Routes>
         </div>
     );

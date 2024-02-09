@@ -3,13 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from './i18n';
 
-
-const UserNameInput = () => {
+const UserNameInput = ({ onUsernameChange }) => {
   const { t } = useTranslation();
+  const handleChange = (event) => {
+    const newUsername = event.target.value;
+    onUsernameChange(newUsername);
+  }
 
   return(
     <div className="text-input-container">
-            <input type="text" placeholder={t('username')} className='UserNameInput'></input>
+            <input type="text" placeholder={t('username')} onChange={handleChange} className='UserNameInput'></input>
     </div>
   )
 }
@@ -23,8 +26,6 @@ export const LanguagePicker = () => {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   }
-
-  //TODO: Change filler languages to actual languages
   const supportedLanguages = ['en', 'de', 'fr', 'es', 'ru'];
 
   const selectLanguage = (language) => {
@@ -51,26 +52,32 @@ export const LanguagePicker = () => {
   );
 };
 
-const EnterChatButton = () => {
+const EnterChatButton = ({ disabled }) => {
   const { t } = useTranslation();
 
   const handleRouting = () => {
-    window.location.href = '/chat';
+    window.location.href = '/chat/' + i18n.language;
   }
   return(
   <div className='buttonContainer'>
-    <button className="EnterChatButton" onClick={handleRouting}>{t('enter')}</button>
+    <button className="EnterChatButton" onClick={handleRouting} disabled={disabled}>{t('enter')}</button>
   </div>
   )
 }
 
 const LoginSite = () => {
+  const [username, setUsername] = useState('');
+
+  const handleUsernameChange = (newUsername) => {
+    setUsername(newUsername);
+  };
+
   return(
     <div className='Background'>
       <div className='LoginBackground'>
-        <UserNameInput></UserNameInput>
+        <UserNameInput onUsernameChange={handleUsernameChange}></UserNameInput>
         <LanguagePicker></LanguagePicker>
-        <EnterChatButton></EnterChatButton>
+        <EnterChatButton disabled={!username}></EnterChatButton>
       </div>
     </div>
   )
